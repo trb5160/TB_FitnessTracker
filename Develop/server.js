@@ -11,16 +11,13 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static('public'));
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
-mongoose.connect(
-    process.env.MONGODB_URI || 'mongodb://localhost/deep-thoughts',
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false
-    }
-  );
+const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/budget";
+mongoose.connect(mongoUri, {
+  useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+});
 
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
