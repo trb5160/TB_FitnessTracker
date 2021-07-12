@@ -11,13 +11,15 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static('public'));
 
-const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/budget";
-mongoose.connect(mongoUri, {
-  useNewUrlParser: true,
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/HerokuApps',
+  {
+    useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false
-});
+  }
+);
 
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
